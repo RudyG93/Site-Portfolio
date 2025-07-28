@@ -11,7 +11,8 @@ const About = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1 }}
-            className="bg-[#EDEDED]">
+            className="bg-[#EDEDED] scroll-mt-22"
+            id="about">
             {/* Titre de la section */}
             <motion.h2
                 initial={{ opacity: 0, y: -20 }}
@@ -94,7 +95,7 @@ const About = () => {
             </div>
 
             {/* Citation inspirante en bas de section */}
-            <div id="skills" className="bg-gray-100 dark:bg-gray-800 py-10 px-6 md:px-12 lg:px-24">
+            <div className="bg-gray-100 dark:bg-gray-800 py-10 px-6 md:px-12 lg:px-24">
                 <blockquote className="text-center text-xl md:text-2xl font-light italic text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
                     “La vie, c'est comme une bicyclette, il faut avancer pour ne pas perdre l'équilibre.”
                     <footer className="mt-4 text-base text-gray-500 dark:text-gray-400">

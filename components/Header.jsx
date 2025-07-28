@@ -6,18 +6,19 @@ import { motion } from "motion/react"
 // Composant d'en-tête principal du portfolio
 const Header = () => {
   return (
+    // Header principal, prend toute la hauteur de l'écran, centre le contenu
     <header className="relative w-full h-screen flex items-center justify-center overflow-hidden">
-      {/* Image de fond en plein écran */}
+      {/* Image de fond en plein écran, légèrement floutée */}
       <Image
         src="/montpellier.webp"
         alt="Montpellier"
         fill
-        className="object-cover object-center absolute inset-0 z-0 blur-sm" // flou léger sur l'image de fond
+        className="object-cover object-center absolute inset-0 z-0 blur-sm"
         priority
       />
-      {/* Cadre transparent/flouté pour le contenu */}
+      {/* Cadre transparent et très légèrement flouté pour le contenu */}
       <div className="relative z-10 w-11/12 max-w-3xl mx-auto flex flex-col items-center justify-center gap-4 py-10 px-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg text-center">
-        {/* Photo de profil */}
+        {/* Photo de profil animée à l'apparition */}
         <motion.div
           initial={{ scale: 0 }}
           whileInView={{ scale: 1 }}
@@ -25,7 +26,7 @@ const Header = () => {
         >
           <Image src={assets.profile_img} alt="profile-img" className="rounded-full w-32 object-cover h-32" />
         </motion.div>
-        {/* Sous-titre de présentation */}
+        {/* Sous-titre animé */}
         <motion.h3
           initial={{ y: -20, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
@@ -34,7 +35,7 @@ const Header = () => {
         >
           Bonjour je suis Rudy Giacomazzo,
         </motion.h3>
-        {/* Titre principal */}
+        {/* Titre principal animé */}
         <motion.h1
           initial={{ y: -30, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
@@ -43,7 +44,7 @@ const Header = () => {
         >
           Développeur web <br />full-stack<span className="text-red-600">.</span>
         </motion.h1>
-        {/* Texte de description */}
+        {/* Texte de description animé */}
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -54,10 +55,9 @@ const Header = () => {
           <strong>d'emploi</strong> ou <strong>d'une alternance</strong> afin de
           gagner en expérience et en compétences.
         </motion.p>
-        {/* Liens vers réseaux et CV */}
+        {/* Liens vers réseaux sociaux et CV, animés */}
         <div
           className="flex flex-col sm:flex-row items-center gap-4 mt-4"
-          id="about"
         >
           {/* Lien GitHub */}
           <motion.a

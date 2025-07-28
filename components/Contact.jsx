@@ -47,7 +47,9 @@ const Contact = () => {
         <motion.article
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}>
+            transition={{ duration: 1 }}
+            className="scroll-mt-22"
+            id="contact">
             {/* Titre de la section */}
             <motion.h2
                 initial={{ opacity: 0, y: -20 }}
@@ -76,8 +78,8 @@ const Contact = () => {
                 {/* Inputs nom et email, côte à côte sur desktop */}
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-5 mb-6 mt-10 px-2 md:px-0'>
                     <motion.input
-                        initial={{ x: -50, opacity: 0 }}
-                        whileInView={{ x: 0, opacity: 1 }}
+                        initial={{opacity: 0 }}
+                        whileInView={{opacity: 1 }}
                         transition={{ duration: 0.6, delay: 1.1 }}
                         type="text"
                         placeholder='Votre nom'
@@ -86,8 +88,8 @@ const Contact = () => {
                         name="nom"
                     />
                     <motion.input
-                        initial={{ x: 50, opacity: 0 }}
-                        whileInView={{ x: 0, opacity: 1 }}
+                        initial={{opacity: 0 }}
+                        whileInView={{opacity: 1 }}
                         transition={{ duration: 0.6, delay: 1.2 }}
                         type="email"
                         placeholder='Votre adresse mail'
@@ -99,7 +101,7 @@ const Contact = () => {
 
                 {/* Champ message */}
                 <motion.textarea
-                    initial={{ y: 100, opacity: 0 }}
+                    initial={{ y: 10, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.6, delay: 1.3 }}
                     rows='6'

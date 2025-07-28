@@ -30,5 +30,5 @@
         "description": "Création d'une page web dynamique pour le site internet d'une architecte d'intérieur en utilisant JavaScript et en communiquant avec une API.",
         "problematics": "Récupérer les données utilisateurs dans le JavaScript via des formulaires, manipuler les éléments du DOM avec JavaScript et gérer les événements utilisateurs avec JavaScript",
         "skills": "Javascript, DOM, Événements, Formulaires"
-    }
+    }    
 ]

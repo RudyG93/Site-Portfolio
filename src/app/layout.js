@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Portfolio - Rudy Giacomazzo - Développeur Web Full-stack",
-  description: "Rudy Giacomazzo's personal portfolio showcasing projects and skills.",
+  description: "Portfolio de Rudy Giacomazzo, développeur web full-stack basé à Montpellier. Découvrez mes compétences, projets et contactez-moi pour vos besoins en développement web.",
 };
 
 export default function RootLayout({ children }) {
