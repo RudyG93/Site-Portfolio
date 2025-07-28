@@ -1,0 +1,47 @@
+[
+  {
+    "icon": "/html5.png",
+    "label": "HTML 5",
+    "level": ["/star.svg", "/star.svg", "/star-empty.svg"]
+  },
+  {
+    "icon": "/css3.png",
+    "label": "CSS 3",
+    "level": ["/star.svg", "/star.svg", "/star-empty.svg"]
+  },
+  {
+    "icon": "/javascript.png",
+    "label": "Javascript",
+    "level": ["/star.svg", "/star-half.svg", "/star-empty.svg"]
+  },
+  {
+    "icon": "/react.png",
+    "label": "React",
+    "level": ["/star.svg", "/star-half.svg", "/star-empty.svg"]
+  },
+  {
+    "icon": "/nodejs.png",
+    "label": "Node.js",
+    "level": ["/star.svg", "/star-half.svg", "/star-empty.svg"]
+  },
+  {
+    "icon": "/mongodb.png",
+    "label": "Mongodb",
+    "level": ["/star.svg", "/star-empty.svg", "/star-empty.svg"]
+  },
+  {
+    "icon": "/php.png",
+    "label": "PHP",
+    "level": ["/star.svg", "/star-empty.svg", "/star-empty.svg"]
+  },
+  {
+    "icon": "/git.png",
+    "label": "Git",
+    "level": ["/star.svg", "/star-half.svg", "/star-empty.svg"]
+  },
+  {
+    "icon": "/vscode.png",
+    "label": "Visual Code",
+    "level": ["/star.svg", "/star-half.svg", "/star-empty.svg"]
+  }
+]

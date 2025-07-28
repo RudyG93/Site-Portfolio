@@ -1,0 +1,34 @@
+[
+    {
+        "img": "/proj6.png",
+        "title": "Projet OC n°6 - Développer le back-end d'un site de notation de livres",
+        "github": "https://github.com/RudyG93/OpenClassroomsProjet6",
+        "description": "Développement du back-end d'un site de notation de livres avec Node.js et MongoDB.",
+        "problematics": "Gestion de l'authentification sécurisée, validation des données, gestion des erreurs.",
+        "skills": "Node.js, Express, MongoDB, Sécurité, API REST"
+    },
+    {
+        "img": "/proj5.jpg",
+        "title": "Projet OC n°5 - Créer une application web de location immobilière avec React",
+        "github": "https://github.com/RudyG93/OpenClassroomsProjet5",
+        "description": "Implémentation du front-end d'une application en utilisant React et React Router pour créer une expérience utilisateur moderne et réactive.",
+        "problematics": "Configurer la navigation entre les pages de l'application avec React Router, initialiser une application avec Create React App et développer des éléments de l'interface d'un site web grâce à des composants React",
+        "skills": "React, React Router, SASS"
+    },
+    {
+        "img": "/proj4.jpg",
+        "title": "Projet OC n°4 - Débugger et optimiser un site de photographe",
+        "github": "https://github.com/RudyG93/OpenClassroomProjet4New",
+        "description": "La mission est d'optimiser le référencement d'un site, en améliorant sa performance et son accessibilité.",
+        "problematics": "Optimiser les performances d'un site web, débugger un site web grâce aux Chrome DevTools et rédiger un cahier de recette pour tester un site",
+        "skills": "SEO, Accessibilité, Débuggage, Chrome DevTools"
+    },
+    {
+        "img": "/proj3.png",
+        "title": "Projet OC n°3 - Créer une page web dynamique avec JavaScript",
+        "github": "https://github.com/RudyG93/OpenClassroomProjet3",
+        "description": "Création d'une page web dynamique pour le site internet d'une architecte d'intérieur en utilisant JavaScript et en communiquant avec une API.",
+        "problematics": "Récupérer les données utilisateurs dans le JavaScript via des formulaires, manipuler les éléments du DOM avec JavaScript et gérer les événements utilisateurs avec JavaScript",
+        "skills": "Javascript, DOM, Événements, Formulaires"
+    }
+]
