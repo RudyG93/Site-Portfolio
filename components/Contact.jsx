@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 // Composant de contact
 const Contact = () => {
 
-    // État pour afficher le résultat de l'envoi du formulaire
+    // État pour afficher le résultat de l'envoi du formulaires
     const [result, setResult] = useState("");
     // État pour savoir si le composant est monté (pour éviter l'hydratation côté serveur)
     const [mounted, setMounted] = useState(false);
