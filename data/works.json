@@ -30,13 +30,5 @@
         "description": "Création d'une page web dynamique pour le site internet d'une architecte d'intérieur en utilisant JavaScript et en communiquant avec une API.",
         "problematics": "Récupérer les données utilisateurs dans le JavaScript via des formulaires, manipuler les éléments du DOM avec JavaScript et gérer les événements utilisateurs avec JavaScript",
         "skills": "Javascript, DOM, Événements, Formulaires"
-    },
-    {
-        "img": "/proj3.png",
-        "title": "Projet OC n°3 - Créer une page web dynamique avec JavaScript",
-        "github": "https://github.com/RudyG93/OpenClassroomProjet3",
-        "description": "Création d'une page web dynamique pour le site internet d'une architecte d'intérieur en utilisant JavaScript et en communiquant avec une API.",
-        "problematics": "Récupérer les données utilisateurs dans le JavaScript via des formulaires, manipuler les éléments du DOM avec JavaScript et gérer les événements utilisateurs avec JavaScript",
-        "skills": "Javascript, DOM, Événements, Formulaires"
-    }    
+    }
 ]
