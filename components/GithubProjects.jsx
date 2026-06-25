@@ -2,8 +2,7 @@ import Reveal from "./Reveal";
 
 const USER = "RudyG93";
 
-// Dépôts déjà mis en avant dans la section "Mes réalisations" (évite les doublons),
-// + le dépôt du portfolio lui-même.
+// Dépôts déjà mis en avant dans "Mes réalisations" (anti-doublon) + le portfolio.
 const EXCLUDE = new Set([
   "OpenClassroomsProjet6",
   "OpenClassroomsProjet5",
@@ -11,6 +10,21 @@ const EXCLUDE = new Set([
   "OpenClassroomProjet3",
   "Site-Portfolio",
 ]);
+
+// Titres d'affichage propres (les noms de repo OpenClassrooms sont "aplatis"
+// par GitHub, accents retirés). Repli sur le nom nettoyé pour tout nouveau dépôt.
+const TITLES = {
+  "OC-8---D-veloppez-une-plateforme-de-r-servation-avec-React": "Kasa",
+  "OC-7---D-veloppez-un-SaaS-de-gestion-de-t-ches": "SaaS de gestion de tâches",
+  "OC-6---D-veloppez-un-dashboard-de-sport-avec-React-et-React-Router": "SportSee",
+  "OC-4---Mettez-en-place-un-site-de-mise-en-relation-avec-PHP": "TomTroc",
+  "OC-3---Ex2-D-veloppez-des-sites-avec-PHP-et-le-mod-le-MVC": "Blog d'Emilie Forteroche",
+  "OC-1---Mettez-en-place-un-serveur-et-un-site-simple-avec-PHP": "The ArtBox",
+  "OC-3---Ex1-Cr-ez-un-outil-de-gestion-de-contacts-en-ligne-de-commande":
+    "Gestion de contacts (CLI)",
+  OpenClassroomProjet4Old: "Nina Carducci (v1)",
+  OpenClassroomsProjet2: "Booki",
+};
 
 async function getRepos() {
   try {
@@ -40,6 +54,20 @@ async function getRepos() {
 
 const prettify = (name) =>
   name.replace(/[-_]+/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+
+// Langage principal + topics, sans doublon (ex. "TypeScript" + topic "typescript").
+const dedupeTechs = (repo) => {
+  const seen = new Set();
+  return [repo.language, ...(repo.topics || [])]
+    .filter(Boolean)
+    .filter((t) => {
+      const k = t.toLowerCase();
+      if (seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    })
+    .slice(0, 4);
+};
 
 const GithubProjects = async () => {
   const repos = await getRepos();
@@ -80,9 +108,8 @@ const GithubProjects = async () => {
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {repos.map((r, i) => {
-            const techs = [r.language, ...(r.topics || [])]
-              .filter(Boolean)
-              .slice(0, 4);
+            const techs = dedupeTechs(r);
+            const title = TITLES[r.name] || prettify(r.name);
             return (
               <Reveal
                 key={r.id}
@@ -95,7 +122,7 @@ const GithubProjects = async () => {
               >
                 <div className="flex justify-between items-start gap-3 mb-3">
                   <div className="font-display font-semibold text-lg leading-tight group-hover:text-accent transition-colors">
-                    {prettify(r.name)}
+                    {title}
                   </div>
                   <span className="text-white/40 text-lg shrink-0">↗</span>
                 </div>
