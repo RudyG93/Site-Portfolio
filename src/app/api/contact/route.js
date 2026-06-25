@@ -1,11 +1,23 @@
-// Route API d'envoi du formulaire de contact.
-// L'appel à web3forms est fait côté serveur : la clé d'accès (publique chez
-// web3forms) ne transite plus dans le bundle navigateur, et le composant client
-// ne fait qu'un POST same-origin vers cette route.
-const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
-const ACCESS_KEY = "ef71f98c-8fd6-4a3d-9c02-a28eff8888b5";
+// Route API d'envoi du formulaire de contact via Resend (côté serveur).
+// Le composant client ne fait qu'un POST same-origin vers cette route.
+// Nécessite la variable d'environnement RESEND_API_KEY (locale + Vercel).
+import { Resend } from "resend";
+
+const TO = "giacomazzorudy@gmail.com";
+// Expéditeur partagé Resend : n'autorise l'envoi que vers l'adresse du compte
+// Resend. Pour envoyer depuis un domaine perso, le vérifier dans Resend et
+// remplacer cette valeur (ex: "Portfolio <contact@ton-domaine.fr>").
+const FROM = "Portfolio <onboarding@resend.dev>";
 
 export async function POST(request) {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    return Response.json(
+      { success: false, message: "Service d'envoi non configuré (RESEND_API_KEY manquante)." },
+      { status: 500 }
+    );
+  }
+
   let payload;
   try {
     payload = await request.json();
@@ -16,7 +28,9 @@ export async function POST(request) {
     );
   }
 
-  const { nom, email, message } = payload || {};
+  const nom = (payload?.nom || "").toString().trim();
+  const email = (payload?.email || "").toString().trim();
+  const message = (payload?.message || "").toString().trim();
   if (!nom || !email || !message) {
     return Response.json(
       { success: false, message: "Merci de remplir tous les champs." },
@@ -24,30 +38,25 @@ export async function POST(request) {
     );
   }
 
+  const resend = new Resend(apiKey);
   try {
-    const res = await fetch(WEB3FORMS_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({
-        access_key: ACCESS_KEY,
-        subject: "Nouveau message depuis votre portfolio",
-        from_name: nom,
-        name: nom,
-        email,
-        message,
-      }),
+    const { error } = await resend.emails.send({
+      from: FROM,
+      to: [TO],
+      replyTo: email,
+      subject: `Nouveau message de ${nom} — portfolio`,
+      text: `Nom : ${nom}\nEmail : ${email}\n\n${message}`,
     });
-    const data = await res.json();
-    if (data.success) {
-      return Response.json({ success: true });
+    if (error) {
+      return Response.json(
+        { success: false, message: error.message || "Erreur lors de l'envoi." },
+        { status: 502 }
+      );
     }
-    return Response.json(
-      { success: false, message: data.message || "Erreur lors de l'envoi." },
-      { status: 502 }
-    );
+    return Response.json({ success: true });
   } catch {
     return Response.json(
-      { success: false, message: "Erreur réseau côté serveur, réessayez." },
+      { success: false, message: "Erreur lors de l'envoi, réessayez." },
       { status: 502 }
     );
   }
