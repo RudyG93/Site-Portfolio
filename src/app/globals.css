@@ -1,18 +1,15 @@
 @import "tailwindcss";
 
-* {
-  font-family: "Geist", sans-serif;
+@theme {
+  --color-ink: #0d0d0f;
+  --color-paper: #ededed;
+  --color-accent: #ff4d5e;
+  --font-display: var(--font-space-grotesk), sans-serif;
+  --font-body: var(--font-hanken), sans-serif;
+  --font-mono: var(--font-jetbrains), monospace;
 }
 
-.btn-nav:hover {
-    color:#c93012;
-    transition:all 0.3s; 
-}
-
-.blackshadow {
-    box-shadow: 4px 4px 0 #000;
-}
-
-.whiteshadow {
-    box-shadow: 4px 4px 0 #fff;
+::selection {
+  background: #ff4d5e;
+  color: #0d0d0f;
 }

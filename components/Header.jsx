@@ -1,109 +1,129 @@
+"use client";
 import Image from "next/image";
-import React from "react";
-import { assets } from "../assets/assets";
-import { motion } from "motion/react"
+import Reveal from "./Reveal";
 
-// Composant d'en-tête principal du portfolio
+const techTags = ["Next.js", "React", "TypeScript", "Node.js"];
+
 const Header = () => {
   return (
-    // Header principal, prend toute la hauteur de l'écran, centre le contenu
-    <header className="relative w-full h-screen flex items-center justify-center overflow-hidden">
-      {/* Image de fond en plein écran, légèrement floutée */}
-      <Image
-        src="/montpellier.webp"
-        alt="Montpellier"
-        fill
-        className="object-cover object-center absolute inset-0 z-0 blur-sm"
-        priority
+    <header
+      id="top"
+      className="relative max-w-[1180px] mx-auto px-5 md:px-10 pt-20 pb-16 md:pt-24 md:pb-24 scroll-mt-20"
+    >
+      {/* Halo décoratif */}
+      <div
+        className="pointer-events-none absolute -top-10 -right-16 w-[520px] h-[520px] max-w-full rounded-full z-0"
+        style={{
+          background:
+            "radial-gradient(circle at 60% 40%, rgba(255,77,94,.14), transparent 62%)",
+        }}
       />
-      {/* Cadre transparent et très légèrement flouté pour le contenu */}
-      <div className="relative z-10 w-11/12 max-w-3xl mx-auto flex flex-col items-center justify-center gap-4 py-10 px-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg text-center">
-        {/* Photo de profil animée à l'apparition */}
-        <motion.div
-          initial={{ scale: 0 }}
-          whileInView={{ scale: 1 }}
-          transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
-        >
-          <Image src={assets.profile_img} alt="profile-img" className="rounded-full w-32 object-cover h-32" />
-        </motion.div>
-        {/* Sous-titre animé */}
-        <motion.h3
-          initial={{ y: -20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-xl md:text-2xl mb-3"
-        >
-          Bonjour je suis Rudy Giacomazzo,
-        </motion.h3>
-        {/* Titre principal animé */}
-        <motion.h1
-          initial={{ y: -30, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-3xl sm:text-6xl lg:text-[66px]"
-        >
-          Développeur web <br />full-stack<span className="text-red-600">.</span>
-        </motion.h1>
-        {/* Texte de description animé */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="max-w-2xl mx-auto"
-        >
-          Je suis un développeur junior basé sur Montpellier en recherche{" "}
-          <strong>d'emploi</strong> ou <strong>d'une alternance</strong> afin de
-          gagner en expérience et en compétences.
-        </motion.p>
-        {/* Liens vers réseaux sociaux et CV, animés */}
-        <div
-          className="flex flex-col sm:flex-row items-center gap-4 mt-4"
-        >
-          {/* Lien GitHub */}
-          <motion.a
-            initial={{ y: 30, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1 }}
-            aria-label="Aller sur mon GitHub"
-            href="https://github.com/RudyG93"
-            target="_blank"
-            className="px-10 py-3 border rounded-full border-white-500 bg-black text-white flex items-center gap-2"
-          >
-            <Image src={assets.github} alt="github icon" className="w-4" /> GitHub
-          </motion.a>
-          {/* Lien LinkedIn */}
-          <motion.a
-            initial={{ y: 30, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1 }}
-            aria-label="Aller sur mon LinkedIn"
-            href="https://www.linkedin.com/in/rudy-giacomazzo-b8aa55321/"
-            target="_blank"
-            className="px-10 py-3 border rounded-full border-[#0e76a8]-500 bg-[#0e76a8] text-white flex items-center gap-2"
-          >
-            <Image src={assets.linkedin} alt="linkedin icon" className="w-4" />{" "}
-            Linkedin
-          </motion.a>
-          {/* Lien de téléchargement du CV */}
-          <motion.a
-            initial={{ y: 30, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1 }}
-            href="/cv-rudy-giacomazzo.pdf"
-            download
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Télécharger le CV de Rudy Giacomazzo au format PDF"
-            className="px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2"
-          >
-            Mon CV
-            <Image
-              src={assets.download_icon}
-              alt="Télécharger le CV"
-              className="w-4"
-            />
-          </motion.a>
-        </div>
+
+      <div className="relative z-10 grid gap-12 md:gap-14 items-center md:grid-cols-[1.15fr_.85fr]">
+        {/* Colonne texte */}
+        <Reveal>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 border border-white/15 rounded-full text-[13px] font-medium text-white/85 mb-7">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_9px_rgba(52,211,153,.8)]" />
+            Disponible immédiatement
+          </div>
+
+          <h1 className="font-display font-semibold text-[42px] md:text-6xl leading-[1.03] tracking-tight m-0">
+            Développeur
+            <br />
+            full-stack <span className="text-accent">Next.js</span>
+          </h1>
+
+          <p className="mt-6 max-w-[480px] text-[17px] leading-[1.65] text-white/65">
+            Je m'appelle{" "}
+            <b className="text-paper font-semibold">Rudy Giacomazzo</b>. Je conçois
+            des applications web performantes en React &amp; Next.js, et des sites
+            sur-mesure pour les artisans — depuis Perpignan ou en remote.
+          </p>
+
+          <div className="flex flex-wrap gap-3 mt-8">
+            <a
+              href="#contact"
+              className="px-6 py-3.5 bg-accent text-ink rounded-[9px] text-[15px] font-semibold"
+            >
+              Me contacter
+            </a>
+            <a
+              href="/cv-rudy-giacomazzo.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3.5 border border-white/20 rounded-[9px] text-[15px] font-semibold inline-flex items-center gap-2"
+            >
+              Mon CV <span className="text-white/50">↓</span>
+            </a>
+          </div>
+
+          <div className="flex flex-wrap gap-5 mt-8 text-sm font-medium">
+            <a
+              href="https://github.com/RudyG93"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/55 hover:text-paper transition-colors"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/rudy-giacomazzo-b8aa55321/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/55 hover:text-paper transition-colors"
+            >
+              LinkedIn
+            </a>
+            <span className="text-white/30">·</span>
+            <span className="text-white/55">Perpignan / Remote</span>
+          </div>
+        </Reveal>
+
+        {/* Carte photo */}
+        <Reveal delay={0.1} className="relative">
+          <div className="absolute inset-0 translate-x-4 translate-y-4 border border-accent/30 rounded-3xl pointer-events-none" />
+          <div className="relative border border-white/10 rounded-3xl overflow-hidden shadow-[0_34px_80px_rgba(0,0,0,.5)]">
+            <div className="relative aspect-[4/5] bg-[#16161a]">
+              <Image
+                src="/rudy.jpg"
+                alt="Rudy Giacomazzo"
+                fill
+                sizes="(max-width: 880px) 100vw, 420px"
+                className="object-cover object-[center_18%]"
+                priority
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(180deg, transparent 42%, rgba(10,10,12,.94))",
+                }}
+              />
+              <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 bg-ink/55 backdrop-blur-sm border border-white/20 rounded-full text-xs font-medium text-white">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_9px_rgba(52,211,153,.8)]" />
+                Disponible
+              </div>
+              <div className="absolute left-6 right-6 bottom-5">
+                <div className="font-display font-semibold text-[23px] leading-tight text-white">
+                  Rudy Giacomazzo
+                </div>
+                <div className="font-mono text-xs text-white/70 mt-1.5">
+                  full-stack developer · Perpignan
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-2 p-[18px] bg-white/[0.03] border-t border-white/10">
+              {techTags.map((t) => (
+                <span
+                  key={t}
+                  className="px-3 py-1.5 bg-white/[0.06] border border-white/10 rounded-md font-mono text-xs text-white/85"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        </Reveal>
       </div>
     </header>
   );

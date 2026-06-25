@@ -1,32 +1,18 @@
-import React from 'react'
-import Image from 'next/image';
-import { assets } from '../assets/assets';
-
-// Composant Footer pour le bas de page
+// Pied de page minimal, repris de la maquette.
 const Footer = () => {
-    return (
-        <footer className="bg-gray-100 dark:bg-gray-800 py-10 px-6 md:px-12 lg:px-24">
-            {/* Liens vers les réseaux sociaux et email */}
-            <div className='flex flex-row items-center justify-center mb-6 gap-4'>
-                {/* Lien email */}
-                <a href="mailto:giacomazzorudy@gmail.com" className="inline-flex items-center justify-center w-10 h-10 rounded-full" aria-label="Envoyer un mail">
-                    <Image src={assets.mail_icon_dark} alt="Email Icon" className="w-6" />
-                </a>
-                {/* Lien Github */}
-                <a href="https://github.com/RudyG93" target="_blank" className="inline-flex items-center justify-center w-10 h-10 rounded-full" aria-label="Aller sur Github">
-                    <Image src={assets.github} alt="Github Icon" className="w-6" />
-                </a>
-                {/* Lien Linkedin */}
-                <a href="https://www.linkedin.com/in/rudy-giacomazzo-b8aa55321/" target="_blank" className="inline-flex items-center justify-center w-10 h-10 rounded-full" aria-label="Allez sur Linkedin">
-                    <Image src={assets.linkedin} alt="Linkedin Icon" className="w-6" />
-                </a>
-            </div>
-            {/* Texte de copyright et mention de la techno utilisée */}
-            <p className='text-white text-center max-w-3xl mx-auto'>
-                © 2025 Giacomazzo Rudy, Tous droits réservés. - Développé avec <a className='font-bold underline hover:text-red-400' target='_blank' href="https://nextjs.org/">Next.js</a>.
-            </p>
-        </footer>
-    )
-}
+  return (
+    <footer className="max-w-[1180px] mx-auto px-5 md:px-10 py-8 border-t border-white/10 flex flex-wrap gap-4 items-center justify-between">
+      <div className="font-display font-semibold text-base">
+        RG<span className="text-accent">.</span>
+        <span className="font-body font-normal text-[13px] text-white/40 ml-2">
+          © 2026 Rudy Giacomazzo
+        </span>
+      </div>
+      <div className="text-[13px] text-white/40">
+        Développé avec Next.js &amp; ❤
+      </div>
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;

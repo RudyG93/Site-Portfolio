@@ -1,78 +1,54 @@
-import React from "react";
-import Image from "next/image";
-import skills from "../data/skills.json"; // Import des données de compétences depuis le fichier JSON
-import { motion } from "motion/react";
+import Reveal from "./Reveal";
+
+const groups = [
+  { title: "FRONT-END", items: ["React", "Next.js", "TypeScript"] },
+  { title: "BACK-END", items: ["Node.js", "PHP", "API REST & MongoDB"] },
+  { title: "EN PLUS", items: ["Intégration IA", "SEO & référencement", "Accessibilité & perf"] },
+];
 
 const Skills = () => {
-    return (
-        <motion.article
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="scroll-mt-22"
-            id="skills">
-            {/* Titre de la section */}
-            <motion.h2
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-                className="w-full px-4 md:px-12 py-8 md:py-10 scroll-mt-20 text-center text-3xl md:text-5xl">
-                Mes compétences
-            </motion.h2>
-            {/* Barre rouge décorative sous le titre */}
-            <div className="w-1/3 md:w-1/8 mx-auto h-1 bg-red-500 rounded-full mb-8"></div>
+  return (
+    <section
+      id="stack"
+      className="px-5 md:px-10 py-16 md:py-24 border-t border-white/10 bg-gradient-to-b from-white/[0.015] to-transparent scroll-mt-16"
+    >
+      <div className="max-w-[1180px] mx-auto">
+        <Reveal className="flex items-center gap-3.5 mb-4">
+          <span className="font-mono text-[13px] text-accent">// compétences</span>
+          <span className="flex-1 h-px bg-white/10" />
+        </Reveal>
 
-            {/* Grille des compétences */}
-            <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.7 }}
-                className="flex flex-row flex-wrap justify-center gap-6 my-10 w-full max-w-2/3 xl:max-w-1/2 2xl:max-w-1/3 justify-self-center">
-                {skills.map((skill, idx) => (
-                    // Carte individuelle pour chaque compétence
-                    <div
-                        key={idx}
-                        className="w-50 h-50 flex flex-col items-center justify-center border border-gray-400 p-4 rounded-lg cursor-pointer hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000]"
-                    >
-                        {/* Icône de la compétence */}
-                        <Image
-                            src={skill.icon}
-                            alt={`${skill.label} Icon`}
-                            width={64}
-                            height={64}
-                            className="max-w-16 h-16 mb-2"
-                        />
-                        {/* Nom de la compétence */}
-                        <h3 className="text-center text-lg font-semibold">{skill.label}</h3>
-                        {/* Niveau de la compétence sous forme d'étoiles */}
-                        <div>
-                            {skill.level.map((star, i) => (
-                                <Image
-                                    key={`${skill.label}-${i}`} // Clé unique pour chaque étoile
-                                    src={star}
-                                    alt={`${star} Icon`}
-                                    width={16}
-                                    height={16}
-                                    className="w-4 h-4 inline-block"
-                                />
-                            ))}
-                        </div>
-                    </div>
+        <Reveal
+          as="h2"
+          className="font-display font-semibold text-[34px] tracking-tight mb-10"
+        >
+          Ma stack technique
+        </Reveal>
+
+        <div className="grid gap-4 md:grid-cols-3">
+          {groups.map((g, i) => (
+            <Reveal
+              key={g.title}
+              delay={(i % 3) * 0.07}
+              className="border border-white/10 rounded-2xl p-7 bg-white/[0.02]"
+            >
+              <div className="font-mono text-xs text-white/45 mb-4">{g.title}</div>
+              <div className="flex flex-col gap-3">
+                {g.items.map((it) => (
+                  <div
+                    key={it}
+                    className="flex items-center gap-3 text-base font-medium"
+                  >
+                    <span className="text-accent">▸</span> {it}
+                  </div>
                 ))}
-            </motion.div>
-
-            {/* Citation inspirante en bas de section */}
-            <div className="bg-gray-100 dark:bg-gray-800 py-10 px-6 md:px-12 lg:px-24">
-                <blockquote className="text-center text-xl md:text-2xl font-light italic text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-                    “Vous ne pourrez évoluer à moins d’essayer d’accomplir quelque chose
-                    au-delà de ce que vous avez déjà réalisé.”
-                    <footer className="mt-4 text-base text-gray-500 dark:text-gray-400">
-                        — Ralph Waldo Emerson
-                    </footer>
-                </blockquote>
-            </div>
-        </motion.article>
-    );
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Skills;

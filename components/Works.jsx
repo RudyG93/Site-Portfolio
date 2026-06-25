@@ -1,119 +1,226 @@
-import React, { useState } from "react";
-import Image from "next/image";
-import works from "../data/works.json";
-import { motion } from "motion/react";
+"use client";
+import { useState, useEffect } from "react";
+import Reveal from "./Reveal";
+
+// Données des projets (4 réalisations + 1 service freelance mis en avant).
+const projects = [
+  {
+    tag: "PROJET — BACK-END",
+    title: "API de notation de livres",
+    card: "Back-end sécurisé : authentification, API REST, validation et gestion des erreurs.",
+    tags: ["Node.js", "Express", "MongoDB"],
+    description:
+      "Développement du back-end d'un site de notation de livres avec Node.js et MongoDB.",
+    problematics:
+      "Gestion de l'authentification sécurisée, validation des données et gestion des erreurs.",
+    skills: "Node.js, Express, MongoDB, Sécurité, API REST",
+    github: "https://github.com/RudyG93/OpenClassroomsProjet6",
+  },
+  {
+    tag: "PROJET — FRONT-END",
+    title: "App de location immobilière",
+    card: "Front-end d'une SPA réactive avec navigation entre pages et composants réutilisables.",
+    tags: ["React", "React Router", "SASS"],
+    description:
+      "Implémentation du front-end d'une application avec React et React Router pour une expérience moderne et réactive.",
+    problematics:
+      "Mise en place de la navigation entre les pages, initialisation de l'application et création de composants React réutilisables.",
+    skills: "React, React Router, SASS",
+    github: "https://github.com/RudyG93/OpenClassroomsProjet5",
+  },
+  {
+    tag: "PROJET — OPTIMISATION",
+    title: "Optimisation site photographe",
+    card: "Débogage, performance, accessibilité et référencement d'un site existant.",
+    tags: ["SEO", "Accessibilité", "DevTools"],
+    description:
+      "Optimiser le référencement d'un site en améliorant sa performance et son accessibilité.",
+    problematics:
+      "Améliorer les performances, déboguer via les Chrome DevTools et rédiger un cahier de recette.",
+    skills: "SEO, Accessibilité, Débogage, Chrome DevTools",
+    github: "https://github.com/RudyG93/OpenClassroomProjet4New",
+  },
+  {
+    tag: "PROJET — JAVASCRIPT",
+    title: "Page web dynamique",
+    card: "Page dynamique pour une architecte d'intérieur, connectée à une API.",
+    tags: ["JavaScript", "DOM", "API"],
+    description:
+      "Création d'une page dynamique pour le site d'une architecte d'intérieur en communiquant avec une API.",
+    problematics:
+      "Récupération des données via formulaires, manipulation du DOM et gestion des événements utilisateurs.",
+    skills: "JavaScript, DOM, Événements, Formulaires",
+    github: "https://github.com/RudyG93/OpenClassroomProjet3",
+  },
+  {
+    tag: "SERVICE — FREELANCE",
+    title: "Sites web sur-mesure pour artisans",
+    card: "Des sites vitrines modernes, rapides et bien référencés localement pour développer votre activité.",
+    description:
+      "Conception de sites vitrines modernes, rapides et bien référencés localement pour aider les artisans à développer leur activité.",
+    problematics:
+      "Allier design soigné, performance, SEO local et simplicité de gestion pour un public non technique.",
+    skills: "Next.js, React, SEO local, Responsive, Accessibilité",
+    github: "",
+  },
+];
+
+const ModalRow = ({ label, text }) => (
+  <div className="mb-[18px]">
+    <div className="font-mono text-xs text-white/40 mb-1.5">{label}</div>
+    <p className="text-[15px] leading-relaxed text-white/80 m-0">{text}</p>
+  </div>
+);
 
 const Works = () => {
-    // État pour gérer l'ouverture de la modale et le projet sélectionné
-    const [modal, setModal] = useState({ open: false, project: null });
+  const [idx, setIdx] = useState(null);
+  const active = idx != null ? projects[idx] : null;
+  const featured = projects[4];
 
-    return (
-        <motion.article
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="bg-[#EDEDED] scroll-mt-22"
-            id="works">
-            {/* Titre de la section */}
-            <motion.h2
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-                className="w-full px-4 md:px-12 py-8 md:py-10 scroll-mt-20 text-center text-3xl md:text-5xl">
-                Mes réalisations
-            </motion.h2>
+  // Fermeture de la modale avec la touche Échap.
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === "Escape") setIdx(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
-            {/* Barre rouge sous le titre */}
-            <div className="w-1/3 md:w-1/8 mx-auto h-1 bg-red-500 rounded-full mb-8"></div>
+  return (
+    <section
+      id="projects"
+      className="px-5 md:px-10 py-16 md:py-24 border-t border-white/10 scroll-mt-16"
+    >
+      <div className="max-w-[1180px] mx-auto">
+        <Reveal className="flex items-center gap-3.5 mb-4">
+          <span className="font-mono text-[13px] text-accent">// projets</span>
+          <span className="flex-1 h-px bg-white/10" />
+        </Reveal>
 
-            {/* Texte d'intro */}
-            <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-                className="text-center text-lg md:text-xl mb-8">
-                Retrouvez mes derniers projets effectués à ce jour. <br />
-                Vous pouvez cliquer sur les différentes réalisations ci-dessous pour en savoir plus
-                ou alors en consultat ma page <a className="font-bold underline hover:text-red-400" target="_blank" href="https://github.com/RudyG93">Github</a>.
-            </motion.p>
+        <Reveal
+          as="h2"
+          className="font-display font-semibold text-[34px] tracking-tight mb-3.5"
+        >
+          Mes réalisations
+        </Reveal>
 
-            {/* Grille des projets */}
-            <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.7 }}
-                className="flex flex-row flex-wrap justify-center gap-6 my-10 w-full max-w-2/3 xl:max-w-1/2 2xl:max-w-1/3 justify-self-center">
-                {works.map((project, idx) => (
-                    // Carte projet
-                    <div
-                        key={idx}
-                        className="bg-black w-75 h-75 flex flex-col items-center justify-center border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000] group relative"
-                    >
-                        {/* Image du projet */}
-                        <Image src={project.img} alt={project.title} width={300} height={200} className="" />
-                        {/* Overlay qui apparaît au survol */}
-                        <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 rounded-lg flex flex-col items-center justify-center text-white transition-opacity duration-300">
-                            <p className="mb-2 text-center px-4">{project.title}</p>
-                            {/* Bouton pour ouvrir la modale */}
-                            <button
-                                className="underline font-bold hover:text-red-400 transition mb-2 cursor-pointer"
-                                onClick={() => setModal({ open: true, project })}
-                                type="button"
-                            >
-                                En savoir plus
-                            </button>
-                            {/* Lien vers le repo Github */}
-                            <a
-                                href={project.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="underline font-bold hover:text-red-400 transition"
-                            >
-                                Voir sur Github
-                            </a>
-                        </div>
-                    </div>
-                ))}
-            </motion.div>
+        <Reveal className="max-w-[560px] mb-10">
+          <p className="text-base leading-relaxed text-white/55 m-0">
+            Cliquez sur un projet pour le détail, ou retrouvez tout sur mon{" "}
+            <a
+              href="https://github.com/RudyG93"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent no-underline hover:underline"
+            >
+              GitHub
+            </a>
+            .
+          </p>
+        </Reveal>
 
-            {/* Modale affichée si modal.open est true */}
-            {modal.open && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
-                    <div className="bg-white rounded-lg p-8 max-w-lg w-full relative">
-                        {/* Bouton pour fermer la modale */}
-                        <button
-                            className="absolute top-2 right-4 text-2xl font-bold text-gray-500 hover:text-red-500 cursor-pointer"
-                            onClick={() => setModal({ open: false, project: null })}
-                            aria-label="Fermer la modale"
-                        >
-                            &times;
-                        </button>
-                        {/* Contenu de la modale */}
-                        <h3 className="text-xl font-bold mb-4">{modal.project.title}</h3>
-                        <p className="mb-4">
-                            <span className="font-semibold">Description :</span> {modal.project.description}
-                        </p>
-                        <p className="mb-4">
-                            <span className="font-semibold">Problématiques rencontrées :</span> {modal.project.problematics}
-                        </p>
-                        <p className="mb-2">
-                            <span className="font-semibold">Compétences développées :</span> {modal.project.skills}
-                        </p>
-                    </div>
+        {/* Grille des 4 réalisations */}
+        <div className="grid gap-4 md:grid-cols-2">
+          {projects.slice(0, 4).map((p, i) => (
+            <Reveal
+              key={p.title}
+              as="div"
+              delay={(i % 2) * 0.07}
+              whileHover={{ y: -3 }}
+              onClick={() => setIdx(i)}
+              className="cursor-pointer border border-white/10 rounded-2xl p-7 bg-gradient-to-b from-white/[0.03] to-transparent transition-colors hover:border-accent/50"
+            >
+              <div className="flex justify-between items-start mb-3">
+                <div className="font-display font-semibold text-xl leading-tight">
+                  {p.title}
                 </div>
-            )}
+                <span className="text-white/40 text-lg">↗</span>
+              </div>
+              <p className="text-[14.5px] leading-relaxed text-white/60 mb-[18px]">
+                {p.card}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {p.tags.map((t) => (
+                  <span
+                    key={t}
+                    className="px-2.5 py-1 border border-white/10 rounded-md font-mono text-[11px] text-white/70"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </Reveal>
+          ))}
+        </div>
 
-            {/* Citation de fin de section */}
-            <div className="bg-gray-100 dark:bg-gray-800 py-10 px-6 md:px-12 lg:px-24">
-                <blockquote className="text-center text-xl md:text-2xl font-light italic text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-                    “On regrette rarement d'avoir osé, mais toujours de ne pas avoir essayer.”
-                    <footer className="mt-4 text-base text-gray-500 dark:text-gray-400">
-                        — Serge Lafrance
-                    </footer>
-                </blockquote>
+        {/* Carte service mise en avant */}
+        <Reveal
+          as="div"
+          whileHover={{ y: -3 }}
+          onClick={() => setIdx(4)}
+          className="cursor-pointer mt-4 border border-accent/30 rounded-2xl p-8 flex items-center justify-between gap-6 transition-colors hover:border-accent/60"
+          style={{
+            background:
+              "linear-gradient(120deg, rgba(255,77,94,.1), rgba(255,77,94,.02))",
+          }}
+        >
+          <div>
+            <div className="font-mono text-xs text-accent mb-3">
+              SERVICE — FREELANCE
             </div>
-        </motion.article>
-    );
+            <div className="font-display font-semibold text-2xl mb-2">
+              {featured.title}
+            </div>
+            <p className="max-w-[560px] text-[15px] leading-relaxed text-white/65 m-0">
+              {featured.card}
+            </p>
+          </div>
+          <span className="text-2xl text-accent shrink-0">↗</span>
+        </Reveal>
+      </div>
+
+      {/* Modale détail projet */}
+      {active && (
+        <div
+          onClick={() => setIdx(null)}
+          className="fixed inset-0 z-[100] bg-[rgba(5,5,7,.78)] backdrop-blur-md flex items-center justify-center p-6"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            className="relative w-full max-w-[560px] bg-[#16161a] border border-white/10 rounded-[18px] p-9 shadow-[0_40px_90px_rgba(0,0,0,.6)]"
+          >
+            <button
+              type="button"
+              onClick={() => setIdx(null)}
+              aria-label="Fermer"
+              className="absolute top-[18px] right-[18px] w-[34px] h-[34px] rounded-[9px] bg-white/[0.06] border border-white/10 text-white/70 text-lg leading-none"
+            >
+              ×
+            </button>
+            <div className="font-mono text-xs text-accent mb-3.5">{active.tag}</div>
+            <h3 className="font-display font-semibold text-2xl leading-tight pr-8 mb-5">
+              {active.title}
+            </h3>
+            <ModalRow label="DESCRIPTION" text={active.description} />
+            <ModalRow label="PROBLÉMATIQUES" text={active.problematics} />
+            <ModalRow label="COMPÉTENCES" text={active.skills} />
+            {active.github && (
+              <a
+                href={active.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-3 bg-accent text-ink rounded-[9px] text-sm font-semibold"
+              >
+                Voir sur GitHub →
+              </a>
+            )}
+          </div>
+        </div>
+      )}
+    </section>
+  );
 };
 
 export default Works;
