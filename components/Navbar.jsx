@@ -4,7 +4,7 @@ import { useState } from "react";
 const links = [
   { href: "#about", label: "À propos" },
   { href: "#stack", label: "Compétences" },
-  { href: "#projects", label: "Projets" },
+  { href: "#github", label: "Projets" },
 ];
 
 const Navbar = () => {

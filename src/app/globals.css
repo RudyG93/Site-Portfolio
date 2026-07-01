@@ -13,3 +13,36 @@
   background: #ff4d5e;
   color: #0d0d0f;
 }
+
+/* Fond aurora animé (dérive lente des halos décoratifs) */
+@keyframes aurora-1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(6%, 4%) scale(1.1);
+  }
+}
+@keyframes aurora-2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-5%, -4%) scale(1.08);
+  }
+}
+.aurora-1 {
+  animation: aurora-1 20s ease-in-out infinite;
+}
+.aurora-2 {
+  animation: aurora-2 26s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-1,
+  .aurora-2 {
+    animation: none;
+  }
+}

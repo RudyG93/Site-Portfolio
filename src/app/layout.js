@@ -1,5 +1,8 @@
 import { Space_Grotesk, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import { siteUrl } from "../lib/site";
+import Background from "../../components/Background";
+import ScrollProgress from "../../components/ScrollProgress";
+import BackToTop from "../../components/BackToTop";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -25,7 +28,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 const title = "Rudy Giacomazzo — Développeur full-stack Next.js";
 const description =
-  "Rudy Giacomazzo, développeur web full-stack (React, Next.js, Node.js) basé à Perpignan, disponible en remote. Applications web performantes et sites sur-mesure pour les artisans.";
+  "Rudy Giacomazzo, développeur web full-stack (React, Next.js, Node.js) basé à Montpellier, disponible en remote. Applications web performantes et sites sur-mesure pour les artisans.";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -37,7 +40,7 @@ export const metadata = {
   keywords: [
     "Rudy Giacomazzo",
     "développeur full-stack",
-    "développeur web Perpignan",
+    "développeur web Montpellier",
     "Next.js",
     "React",
     "Node.js",
@@ -77,7 +80,7 @@ const personJsonLd = {
   email: "mailto:giacomazzorudy@gmail.com",
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Perpignan",
+    addressLocality: "Montpellier",
     addressCountry: "FR",
   },
   sameAs: [
@@ -101,7 +104,10 @@ export default function RootLayout({ children }) {
       <body
         className={`${spaceGrotesk.variable} ${hankenGrotesk.variable} ${jetbrainsMono.variable} antialiased bg-ink text-paper font-body overflow-x-hidden`}
       >
+        <Background />
+        <ScrollProgress />
         {children}
+        <BackToTop />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}

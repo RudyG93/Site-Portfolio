@@ -2,7 +2,7 @@ import Reveal from "./Reveal";
 
 const stats = [
   { value: "7+", label: "technologies maîtrisées, du front au back" },
-  { value: "100%", label: "remote possible · basé à Perpignan" },
+  { value: "100%", label: "remote possible · basé à Montpellier" },
   { value: "Dispo", label: "immédiatement, prêt à m'investir" },
 ];
 

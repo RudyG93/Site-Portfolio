@@ -22,11 +22,6 @@ const Header = () => {
       <div className="relative z-10 grid gap-12 md:gap-14 items-center md:grid-cols-[1.15fr_.85fr]">
         {/* Colonne texte */}
         <Reveal>
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 border border-white/15 rounded-full text-[13px] font-medium text-white/85 mb-7">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_9px_rgba(52,211,153,.8)]" />
-            Disponible immédiatement
-          </div>
-
           <h1 className="font-display font-semibold text-[42px] md:text-6xl leading-[1.03] tracking-tight m-0">
             Développeur
             <br />
@@ -37,13 +32,13 @@ const Header = () => {
             Je m'appelle{" "}
             <b className="text-paper font-semibold">Rudy Giacomazzo</b>. Je conçois
             des applications web performantes en React &amp; Next.js, et des sites
-            sur-mesure pour les artisans — depuis Perpignan ou en remote.
+            sur-mesure pour les artisans — depuis Montpellier ou en remote.
           </p>
 
           <div className="flex flex-wrap gap-3 mt-8">
             <a
               href="#contact"
-              className="px-6 py-3.5 bg-accent text-ink rounded-[9px] text-[15px] font-semibold"
+              className="px-6 py-3.5 bg-accent text-ink rounded-[9px] text-[15px] font-semibold transition-transform hover:-translate-y-0.5"
             >
               Me contacter
             </a>
@@ -51,7 +46,7 @@ const Header = () => {
               href="/cv-rudy-giacomazzo.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3.5 border border-white/20 rounded-[9px] text-[15px] font-semibold inline-flex items-center gap-2"
+              className="px-6 py-3.5 border border-white/20 rounded-[9px] text-[15px] font-semibold inline-flex items-center gap-2 transition-colors hover:border-white/40"
             >
               Mon CV <span className="text-white/50">↓</span>
             </a>
@@ -75,7 +70,7 @@ const Header = () => {
               LinkedIn
             </a>
             <span className="text-white/30">·</span>
-            <span className="text-white/55">Perpignan / Remote</span>
+            <span className="text-white/55">Montpellier / Remote</span>
           </div>
         </Reveal>
 
@@ -108,7 +103,7 @@ const Header = () => {
                   Rudy Giacomazzo
                 </div>
                 <div className="font-mono text-xs text-white/70 mt-1.5">
-                  full-stack developer · Perpignan
+                  full-stack developer · Montpellier
                 </div>
               </div>
             </div>

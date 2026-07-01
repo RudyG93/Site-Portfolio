@@ -44,7 +44,7 @@ export default function Image() {
               marginRight: 14,
             }}
           />
-          Disponible · Perpignan / Remote
+          Disponible · Montpellier / Remote
         </div>
       </div>
     ),

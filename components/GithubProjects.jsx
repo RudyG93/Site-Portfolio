@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Reveal from "./Reveal";
 
 const USER = "RudyG93";
@@ -24,6 +25,21 @@ const TITLES = {
     "Gestion de contacts (CLI)",
   OpenClassroomProjet4Old: "Nina Carducci (v1)",
   OpenClassroomsProjet2: "Booki",
+};
+
+// Captures d'écran des projets, déposées dans /public/projects.
+// Clé = nom exact du repo GitHub. Prioritaires sur l'aperçu GitHub par défaut.
+const PREVIEWS = {
+  KEF: "/projects/kef.jpg",
+  kstage: "/projects/kstage.jpg",
+  "OC-8---D-veloppez-une-plateforme-de-r-servation-avec-React":
+    "/projects/kasa.jpg",
+  "OC-7---D-veloppez-un-SaaS-de-gestion-de-t-ches": "/projects/saas-taches.jpg",
+  "OC-6---D-veloppez-un-dashboard-de-sport-avec-React-et-React-Router":
+    "/projects/sportsee.jpg",
+  // Aperçu GitHub figé en fichier local (fiabilité : évite le rate-limit OG).
+  "OC-4---Mettez-en-place-un-site-de-mise-en-relation-avec-PHP":
+    "/projects/tomtroc.png",
 };
 
 async function getRepos() {
@@ -110,6 +126,10 @@ const GithubProjects = async () => {
           {repos.map((r, i) => {
             const techs = dedupeTechs(r);
             const title = TITLES[r.name] || prettify(r.name);
+            const preview = PREVIEWS[r.name];
+            const ogUrl = `https://opengraph.githubassets.com/${encodeURIComponent(
+              r.pushed_at
+            )}/${r.full_name || `${USER}/${r.name}`}`;
             return (
               <Reveal
                 key={r.id}
@@ -118,31 +138,38 @@ const GithubProjects = async () => {
                 href={r.html_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block border border-white/10 rounded-2xl p-6 bg-gradient-to-b from-white/[0.03] to-transparent transition-colors hover:border-accent/50"
+                whileHover={{ y: -4 }}
+                className="group block overflow-hidden border border-white/10 rounded-2xl bg-gradient-to-b from-white/[0.03] to-transparent transition-colors hover:border-accent/50"
               >
-                <div className="flex justify-between items-start gap-3 mb-3">
-                  <div className="font-display font-semibold text-lg leading-tight group-hover:text-accent transition-colors">
-                    {title}
-                  </div>
-                  <span className="text-white/40 text-lg shrink-0">↗</span>
+                <div className="relative aspect-[2/1] overflow-hidden bg-white/[0.03] border-b border-white/10">
+                  <Image
+                    src={preview || ogUrl}
+                    alt={`Aperçu du projet ${title}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
                 </div>
-                {r.description && (
-                  <p className="text-[14px] leading-relaxed text-white/55 mb-4">
-                    {r.description}
-                  </p>
-                )}
-                {techs.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {techs.map((t) => (
-                      <span
-                        key={t}
-                        className="px-2.5 py-1 border border-white/10 rounded-md font-mono text-[11px] text-white/70"
-                      >
-                        {t}
-                      </span>
-                    ))}
+                <div className="p-6">
+                  <div className="flex justify-between items-start gap-3 mb-3">
+                    <div className="font-display font-semibold text-lg leading-tight group-hover:text-accent transition-colors">
+                      {title}
+                    </div>
+                    <span className="text-white/40 text-lg shrink-0">↗</span>
                   </div>
-                )}
+                  {techs.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {techs.map((t) => (
+                        <span
+                          key={t}
+                          className="px-2.5 py-1 border border-white/10 rounded-md font-mono text-[11px] text-white/70"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </Reveal>
             );
           })}
