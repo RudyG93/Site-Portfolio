@@ -1,4 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <rect width="512" height="512" rx="120" fill="#0d0d0f" />
-  <text x="248" y="292" text-anchor="middle" font-family="'Space Grotesk','Segoe UI',Arial,sans-serif" font-weight="600" font-size="232" letter-spacing="-8" fill="#ededed">RG<tspan fill="#ff4d5e">.</tspan></text>
+  <text x="252" y="338" text-anchor="middle" font-family="'Segoe UI','Arial',sans-serif" font-weight="600" font-size="232" letter-spacing="-8" fill="#ededed">RG<tspan fill="#ff4d5e">.</tspan></text>
 </svg>
